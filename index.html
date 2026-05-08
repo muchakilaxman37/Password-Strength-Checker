@@ -1,0 +1,99 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+
+    <style>
+        body {
+            background: rgb(255, 255, 255);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #00b894;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #019875;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+
+        li {
+            color: #ff7675;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Password Checker</h1>
+
+    <form method="POST">
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Check Strength</button>
+    </form>
+
+    {% if strength %}
+    <div class="result">
+        <h2 style="color: {{ color }};">{{ strength }}</h2>
+
+        {% if remarks %}
+        <ul>
+            {% for remark in remarks %}
+            <li>{{ remark }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
